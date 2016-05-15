@@ -32,9 +32,9 @@ public class Test {
      */
     public static void main(String[] args) {
         try {
-            String publicKeyStr = "0425ccf4c7eb19202f21315a0a21227fc1e0e7a32ac3f67eb6739bb1c28a2010755b06a8e490fd4bfa90316841d588302f0d4715bc864d3dae202251bacce0921c";
-            String signatureStr = "3045022071cedac5cf9819ad6a7f9ce9f49df18271963c890b19259f7684b40201d333f1022100a4512511b1533de503a148ac2c22573a3387df436a37d6108aa1e0a4655ebd6e";
-            File file = new File("./upload/Total_Oil_Supplynew.csv");
+            String publicKeyStr = "04da9399786008e4315cbd794d21e9b05562238f7fe02c7eeec15f560335886c95045de63b74d56b834306c31c25655e2396bdccd7d427303980b4bc40f64896fb";
+            String signatureStr = "3046022100ca7dd07a17114fefca5fe4754fc1325f5340d07146084273d19cacddc96dcdf7022100d209e607896533434108bf8c62c15a90d0b1852cbc46d047d1e2e4d9f3429266";
+            File file = new File("./upload/15834.jpg");
             byte[] data = new byte[(int)file.length()];
             FileInputStream in = new FileInputStream(file);
             in.read(data);

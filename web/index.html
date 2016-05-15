@@ -27,16 +27,16 @@
             <input type="button" value="generate EC key pair" onClick="doGenerate();"/><br/>
             <p>
                 EC private key (hex): <input type="text" name="prvkey" value="" size="100"/><br/>
-                EC public key (hex): <input type="text" name="pubkey" value="" size="100"/><br/>
+                EC public key (hex): <input type="text" id="pubkey" name="pubkey" value="" size="100"/><br/>
             </p>
             <h4>(Step2) Sign file</h4>
             <input type="hidden" name="msg" id="msg" value=""/><br/>
             <input type="button" value="sign file" onClick="doSign();"/><br/>
             <p>
-                Signature value (hex): <input type="text" name="sigval1" value="" size="100"/><br/>
+                Signature value (hex): <input type="text" id="sig" name="sigval1" value="" size="100"/><br/>
             </p>
             <h4>(Step3) Verify uploaded file</h4>
-            <input type="button" id="verify" value="verify" onClick="doVerify();"/>
+            <input type="button" id="verify" value="verify"/>
             <div id="verification"></div>
         </form>
         

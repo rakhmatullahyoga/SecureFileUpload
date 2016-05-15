@@ -7,8 +7,20 @@
 document.querySelector('input#file').addEventListener('change', function(){
     var reader = new FileReader();
     reader.onload = function(){
-        var binaryString = this.result;
-        document.getElementById('msg').value = binaryString;
+        var markup, result, n, aByte, byteStr;
+
+        markup = [];
+        result = reader.result;
+        for (n = 0; n < result.length; ++n) {
+            aByte = result.charCodeAt(n);
+            byteStr = aByte.toString(16);
+            if (byteStr.length < 2) {
+                byteStr = "0" + byteStr;
+            }
+            markup.push(byteStr);
+        }
+        //console.log(markup.join(""));
+        document.getElementById('msg').value = markup.join("");
     };
     reader.readAsBinaryString(this.files[0]);
 }, false);
@@ -43,4 +55,12 @@ $(document).ready(function() {
         }
     };
     $("#UploadForm").ajaxForm(options);
+});
+
+$(document).on("click", "#verify", function() {
+    var key = document.getElementById('pubkey').value;
+    var sign = document.getElementById('sig').value;
+    $.get("UploadServlet?pkey="+key+"&sig="+sign, function(responseText) {
+        $("#verification").html(responseText);
+    });
 });
