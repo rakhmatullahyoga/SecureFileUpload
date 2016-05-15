@@ -98,7 +98,7 @@ public class UploadServlet extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Servlet for uploading file";
     }// </editor-fold>
 
 }

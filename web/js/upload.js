@@ -4,6 +4,15 @@
  * and open the template in the editor.
  */
 
+document.querySelector('input#file').addEventListener('change', function(){
+    var reader = new FileReader();
+    reader.onload = function(){
+        var binaryString = this.result;
+        document.getElementById('msg').value = binaryString;
+    };
+    reader.readAsBinaryString(this.files[0]);
+}, false);
+
 $(document).ready(function() {
     var options = {
         beforeSend : function() {

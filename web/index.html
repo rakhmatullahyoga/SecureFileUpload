@@ -10,24 +10,41 @@
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
-        
-        <!-- Include jQuery form & jQuery script file. -->
-        <script src="js/jquery.js" ></script>
-        <script src="js/jquery.form.js" ></script>
-        <script src="js/upload.js" ></script>
     </head>
     <body>
         <h1>Secure File Upload Demo</h1>
         <h2 class="lead">Secure your file upload process with RSA Signature</h2>
-        <form id="UploadForm" action="UploadServlet" method="post" enctype="multipart/form-data">
-            <input type="file" id="myfile" name="myfile">
+        <form name="form" id="UploadForm" action="UploadServlet" method="post" enctype="multipart/form-data">
+            <h4>(Step0) Select file</h4>
+            <input type="file" id="file" name="file">
             <input type="submit" value="Upload">
             <div id="progressbox">
                 <div id="progressbar"></div>
                 <div id="percent">0%</div>
             </div>
-            <br />
-        <div id="message"></div>
+            <div id="message"></div>
+            <h4>(Step1) Generate key pair</h4>
+            <input type="button" value="generate EC key pair" onClick="doGenerate();"/><br/>
+            <p>
+                EC private key (hex): <input type="text" name="prvkey" value="" size="100"/><br/>
+                EC public key (hex): <input type="text" name="pubkey" value="" size="100"/><br/>
+            </p>
+            <h4>(Step2) Sign file</h4>
+            <input type="hidden" name="msg" id="msg" value=""/><br/>
+            <input type="button" value="sign file" onClick="doSign();"/><br/>
+            <p>
+                Signature value (hex): <input type="text" name="sigval1" value="" size="100"/><br/>
+            </p>
+            <h4>(Step3) Verify uploaded file</h4>
+            <input type="button" id="verify" value="verify" onClick="doVerify();"/>
+            <div id="verification"></div>
         </form>
+        
+        <!-- Include jQuery form & jQuery script file. -->
+        <script language="JavaScript" type="text/javascript" src="js/jquery.js" ></script>
+        <script language="JavaScript" type="text/javascript" src="js/jquery.form.js" ></script>
+        <script language="JavaScript" type="text/javascript" src="js/upload.js" ></script>
+        <script language="JavaScript" type="text/javascript" src="js/signature.js" ></script>
+        <script language="JavaScript" type="text/javascript" src="js/jsrsasign-latest-all-min.js"></script>
     </body>
 </html>

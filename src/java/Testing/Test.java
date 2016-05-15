@@ -6,6 +6,10 @@
 package Testing;
 
 import Signature.ECDSA;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -28,15 +32,22 @@ public class Test {
      */
     public static void main(String[] args) {
         try {
-            String message = "aaa";
-            String publicKeyStr = "04423a7a5b5040f702719efe38a62a266105864f5d0e3abd5252cc6482ca098320f8008f92c8181be470d79f8c01b47ca12c32d4381ecd994daaa1a589432bfe64";
-            String signatureStr = "3044022073eed6324d2c842781c5a883aaa55c7c56ef990b84d4f02fb331f559b10ceca102201f5daa665a657ec0b73b9f60b7995773ace150927f3584f729ae96deac945c29";
-            boolean verified = ECDSA.isValidSignature(DatatypeConverter.parseHexBinary(publicKeyStr), message.getBytes("UTF-8"), DatatypeConverter.parseHexBinary(signatureStr));
+            String publicKeyStr = "0425ccf4c7eb19202f21315a0a21227fc1e0e7a32ac3f67eb6739bb1c28a2010755b06a8e490fd4bfa90316841d588302f0d4715bc864d3dae202251bacce0921c";
+            String signatureStr = "3045022071cedac5cf9819ad6a7f9ce9f49df18271963c890b19259f7684b40201d333f1022100a4512511b1533de503a148ac2c22573a3387df436a37d6108aa1e0a4655ebd6e";
+            File file = new File("./upload/Total_Oil_Supplynew.csv");
+            byte[] data = new byte[(int)file.length()];
+            FileInputStream in = new FileInputStream(file);
+            in.read(data);
+            boolean verified = ECDSA.isValidSignature(DatatypeConverter.parseHexBinary(publicKeyStr), data, DatatypeConverter.parseHexBinary(signatureStr));
             
             System.out.println(verified);
         } catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidKeyException | SignatureException | InvalidKeySpecException | UnsupportedEncodingException ex) {
             System.out.println("Verification failed!");
             Logger.getLogger(ECDSA.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

@@ -8,32 +8,43 @@ and open the template in the editor.
     Author     : Rakhmatullah Yoga S
 */
 
+h1, h2 {
+    text-align: center;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+h4 {
+    margin-top: 20px;
+}
+
 form {
-	display: block;
-	margin: 20px auto;
-	background: #eee;
-	border-radius: 10px;
-	padding: 15px
+    display: block;
+    margin: 20px auto;
+    //background: #eee;
+    border-radius: 10px;
+    padding: 15px
 }
 
 #progressbox {
-	position: relative;
-	width: 400px;
-	border: 1px solid #ddd;
-	padding: 1px;
-	border-radius: 3px;
+    position: relative;
+    width: 400px;
+    border: 1px solid #ddd;
+    padding: 1px;
+    border-radius: 3px;
 }
 
 #progressbar {
-	background-color: lightblue;
-	width: 0%;
-	height: 20px;
-	border-radius: 4px;
+    background-color: lightblue;
+    width: 0%;
+    height: 20px;
+    border-radius: 4px;
 }
 
 #percent {
-	position: absolute;
-	display: inline-block;
-	top: 3px;
-	left: 48%;
+    position: absolute;
+    display: inline-block;
+    top: 3px;
+    left: 48%;
 }
