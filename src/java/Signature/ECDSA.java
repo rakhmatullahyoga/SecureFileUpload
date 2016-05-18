@@ -27,7 +27,7 @@ import org.bouncycastle.jce.spec.ECNamedCurveSpec;
  * @author Rakhmatullah Yoga S
  */
 public class ECDSA {
-    private static final String SIGN_ALGO = "SHA256withECDSA";
+    private static final String SIGN_ALGO = "SHA1withECDSA";
     private static final String CURVE = "prime256v1";
     private static final String KEY_ALGO = "ECDSA";
     

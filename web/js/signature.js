@@ -18,7 +18,7 @@ function doSign() {
     var f1 = document.form;
     var prvkey = f1.prvkey.value;
     var curve = "secp256r1";
-    var sigalg = "SHA256withECDSA";
+    var sigalg = "SHA1withECDSA";
     var msg = f1.msg.value;
     var sig = new KJUR.crypto.Signature({"alg": sigalg});
     
