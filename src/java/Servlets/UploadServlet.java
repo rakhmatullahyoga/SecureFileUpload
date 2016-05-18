@@ -59,11 +59,9 @@ public class UploadServlet extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
             String publicKeyStr = request.getParameter("pkey");
             String signatureStr = request.getParameter("sig");
-            //System.out.println("File name: "+uploaded.getName());
             byte[] data = new byte[(int)uploaded.length()];
             FileInputStream in = new FileInputStream(uploaded);
             in.read(data);
-            //System.out.println("Size:"+uploaded.length());
             boolean verified = ECDSA.isValidSignature(DatatypeConverter.parseHexBinary(publicKeyStr), data, DatatypeConverter.parseHexBinary(signatureStr));
             if(verified) {
                 out.println("<font color='blue'>Verification succeeded! Your file is safe.</font>");
@@ -108,7 +106,7 @@ public class UploadServlet extends HttpServlet {
                 }
             } 
             catch (Exception e) {
-                //System.out.println("File upload failed");
+                System.out.println("File upload failed");
             }
 	}
     }
