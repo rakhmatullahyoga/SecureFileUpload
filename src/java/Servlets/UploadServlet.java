@@ -36,6 +36,7 @@ public class UploadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private final String UPLOAD_DIRECTORY = "./upload";
     private File uploaded;
+    private String pubKey,sigval;
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -57,12 +58,10 @@ public class UploadServlet extends HttpServlet {
                 return;
             }
             response.setContentType("text/html;charset=UTF-8");
-            String publicKeyStr = request.getParameter("pkey");
-            String signatureStr = request.getParameter("sig");
             byte[] data = new byte[(int)uploaded.length()];
             FileInputStream in = new FileInputStream(uploaded);
             in.read(data);
-            boolean verified = ECDSA.isValidSignature(DatatypeConverter.parseHexBinary(publicKeyStr), data, DatatypeConverter.parseHexBinary(signatureStr));
+            boolean verified = ECDSA.isValidSignature(DatatypeConverter.parseHexBinary(pubKey), data, DatatypeConverter.parseHexBinary(sigval));
             if(verified) {
                 out.println("<font color='blue'>Verification succeeded! Your file is safe.</font>");
             }
@@ -102,6 +101,14 @@ public class UploadServlet extends HttpServlet {
                         String name = new File(item.getName()).getName();
                         uploaded = new File(getServletContext().getRealPath(UPLOAD_DIRECTORY) + File.separator + name);
                         item.write(uploaded);
+                    }
+                    else {
+                        if (item.getFieldName().equals("pubkey2")) {
+                            pubKey = item.getString();
+                        }
+                        if (item.getFieldName().equals("sigval2")) {
+                            sigval = item.getString();
+                        }
                     }
                 }
             } 

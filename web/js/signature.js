@@ -12,6 +12,7 @@ function doGenerate() {
 
     f1.prvkey.value = keypair.ecprvhex;
     f1.pubkey.value = keypair.ecpubhex;
+    f1.pubkey2.value = keypair.ecpubhex;
 }
 
 function doSign() {
@@ -28,4 +29,5 @@ function doSign() {
     sig.updateHex(msg);
     var sigValueHex = sig.sign();
     f1.sigval1.value = sigValueHex;
+    f1.sigval2.value = sigValueHex;
 }

@@ -17,7 +17,8 @@
         <form name="form" id="UploadForm" action="UploadServlet" method="post" enctype="multipart/form-data">
             <h4>(Step0) Select file</h4>
             <input type="file" id="file" name="file">
-            <input type="submit" value="Upload">
+            <input type="hidden" name="pubkey2">
+            <input type="hidden" name="sigval2">
             <div id="progressbox">
                 <div id="progressbar"></div>
                 <div id="percent">0%</div>
@@ -35,7 +36,10 @@
             <p>
                 Signature value (hex): <input type="text" id="sig" name="sigval1" value="" size="100"/><br/>
             </p>
-            <h4>(Step3) Verify uploaded file</h4>
+            <h4>(Step3) Upload file</h4>
+            <input type="submit" value="Upload">
+            <br>
+            <h4>(Step4) Verify uploaded file</h4>
             <input type="button" id="verify" value="verify"/>
             <div id="verification"></div>
         </form>

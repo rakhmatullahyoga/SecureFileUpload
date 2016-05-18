@@ -60,7 +60,7 @@ $(document).ready(function() {
 $(document).on("click", "#verify", function() {
     var key = document.getElementById('pubkey').value;
     var sign = document.getElementById('sig').value;
-    $.get("UploadServlet?pkey="+key+"&sig="+sign, function(responseText) {
+    $.get("UploadServlet", function(responseText) {
         $("#verification").html(responseText);
     });
 });
