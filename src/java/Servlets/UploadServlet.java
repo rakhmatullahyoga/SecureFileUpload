@@ -103,10 +103,10 @@ public class UploadServlet extends HttpServlet {
                         item.write(uploaded);
                     }
                     else {
-                        if (item.getFieldName().equals("pubkey2")) {
+                        if (item.getFieldName().equals("pubkey")) {
                             pubKey = item.getString();
                         }
-                        if (item.getFieldName().equals("sigval2")) {
+                        if (item.getFieldName().equals("sigval1")) {
                             sigval = item.getString();
                         }
                     }

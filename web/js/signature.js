@@ -12,7 +12,6 @@ function doGenerate() {
 
     f1.prvkey.value = keypair.ecprvhex;
     f1.pubkey.value = keypair.ecpubhex;
-    f1.pubkey2.value = keypair.ecpubhex;
 }
 
 function doSign() {
@@ -22,12 +21,9 @@ function doSign() {
     var sigalg = "SHA1withECDSA";
     var msg = f1.msg.value;
     var sig = new KJUR.crypto.Signature({"alg": sigalg});
-    
-    //console.log(msg);
 
     sig.initSign({'ecprvhex': prvkey, 'eccurvename': curve});
     sig.updateHex(msg);
     var sigValueHex = sig.sign();
     f1.sigval1.value = sigValueHex;
-    f1.sigval2.value = sigValueHex;
 }

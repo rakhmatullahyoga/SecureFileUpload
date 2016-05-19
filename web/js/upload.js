@@ -19,7 +19,6 @@ document.querySelector('input#file').addEventListener('change', function(){
             }
             markup.push(byteStr);
         }
-        //console.log(markup.join(""));
         document.getElementById('msg').value = markup.join("");
     };
     reader.readAsBinaryString(this.files[0]);
@@ -29,6 +28,7 @@ $(document).ready(function() {
     var options = {
         beforeSend : function() {
             $("#progressbox").show();
+
             // clear everything
             $("#progressbar").width('0%');
             $("#message").empty();

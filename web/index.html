@@ -17,13 +17,6 @@
         <form name="form" id="UploadForm" action="UploadServlet" method="post" enctype="multipart/form-data">
             <h4>(Step0) Select file</h4>
             <input type="file" id="file" name="file">
-            <input type="hidden" name="pubkey2">
-            <input type="hidden" name="sigval2">
-            <div id="progressbox">
-                <div id="progressbar"></div>
-                <div id="percent">0%</div>
-            </div>
-            <div id="message"></div>
             <h4>(Step1) Generate key pair</h4>
             <input type="button" value="generate EC key pair" onClick="doGenerate();"/><br/>
             <p>
@@ -38,7 +31,11 @@
             </p>
             <h4>(Step3) Upload file</h4>
             <input type="submit" value="Upload">
-            <br>
+            <div id="progressbox">
+                <div id="progressbar"></div>
+                <div id="percent">0%</div>
+            </div>
+            <div id="message"></div>
             <h4>(Step4) Verify uploaded file</h4>
             <input type="button" id="verify" value="verify"/>
             <div id="verification"></div>
