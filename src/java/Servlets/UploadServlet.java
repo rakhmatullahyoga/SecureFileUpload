@@ -37,6 +37,9 @@ public class UploadServlet extends HttpServlet {
     private final String UPLOAD_DIRECTORY = "./upload";
     private File uploaded;
     private String pubKey,sigval;
+    private long startTime;
+    private long stopTime;
+    private long elapsedTime;
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -61,7 +64,11 @@ public class UploadServlet extends HttpServlet {
             byte[] data = new byte[(int)uploaded.length()];
             FileInputStream in = new FileInputStream(uploaded);
             in.read(data);
+            startTime = System.currentTimeMillis();
             boolean verified = ECDSA.isValidSignature(DatatypeConverter.parseHexBinary(pubKey), data, DatatypeConverter.parseHexBinary(sigval));
+            stopTime = System.currentTimeMillis();
+            elapsedTime = stopTime - startTime;
+            System.out.println("Verifying duration : "+elapsedTime);
             if(verified) {
                 out.println("<font color='blue'>Verification succeeded! Your file is safe.</font>");
             }
@@ -70,6 +77,9 @@ public class UploadServlet extends HttpServlet {
             }
             uploaded = null;
         } catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidKeyException | SignatureException | InvalidKeySpecException ex) {
+            stopTime = System.currentTimeMillis();
+            elapsedTime = stopTime - startTime;
+            System.out.println("Verifying duration : "+elapsedTime);
             out.println("<font color='red'>Verification failed! Your file might be attacked.</font>");
             Logger.getLogger(UploadServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -15,6 +15,7 @@ function doGenerate() {
 }
 
 function doSign() {
+    var start = new Date().getTime();
     var f1 = document.form;
     var prvkey = f1.prvkey.value;
     var curve = "secp256r1";
@@ -25,5 +26,8 @@ function doSign() {
     sig.initSign({'ecprvhex': prvkey, 'eccurvename': curve});
     sig.updateHex(msg);
     var sigValueHex = sig.sign();
+    var end = new Date().getTime();
+    var time = end - start;
+    console.log("Signing duration : "+time);
     f1.sigval1.value = sigValueHex;
 }
